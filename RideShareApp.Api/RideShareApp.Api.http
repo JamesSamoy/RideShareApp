@@ -1,0 +1,25 @@
+@RideShareApp_Api_HostAddress = https://localhost:44390
+
+#GET {{RideShareApp.Api_HostAddress}}/weatherforecast/
+#Accept: application/json
+
+POST {{RideShareApp_Api_HostAddress}}/api/Rider/A262438C-01BA-4A2B-A919-9F01FFAC1F76/complete
+Content-Type: application/json
+
+{
+    "RiderId": "7B17BD6B-0450-4042-98F5-B5528A63802E",
+    "DriverId": "2502D1D2-88C1-40E1-A445-BF124D19FCD8",
+    "FareAmount": 0.00
+}
+
+###
+
+GET {{RideShareApp_Api_HostAddress}}/api/token/someUser
+Accept: application/json
+ 
+> {% client.global.set("token", response.body.token); %}
+
+###
+
+GET {{RideShareApp_Api_HostAddress}}/api/user/test
+Authorization: Bearer {{token}}

@@ -1,0 +1,6 @@
+@RideShareApp.RatingService_HostAddress = http://localhost:5093
+
+GET {{RideShareApp.RatingService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

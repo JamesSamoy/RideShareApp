@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShareApp.Contracts", "RideShareApp.Contracts\RideShareApp.Contracts.csproj", "{E4DCD7E3-F8E5-4B83-A905-F8F574CD96C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShareApp.Api", "RideShareApp.Api\RideShareApp.Api.csproj", "{FB892BCF-BFA4-4B64-A1D6-0FC73D056CF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShareApp.NotificationService", "RideShareApp.NotificationService\RideShareApp.NotificationService.csproj", "{107D088F-C9FC-430D-A9DB-E1661485C355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShareApp.RatingService", "RideShareApp.RatingService\RideShareApp.RatingService.csproj", "{2CAB2599-CCC5-4BAD-B945-2207FE0A346A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShareApp.PaymentsService", "RideShareApp.PaymentsService\RideShareApp.PaymentsService.csproj", "{C519A6B6-F0E4-4AA3-BB49-C5B799218B35}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4DCD7E3-F8E5-4B83-A905-F8F574CD96C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DCD7E3-F8E5-4B83-A905-F8F574CD96C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DCD7E3-F8E5-4B83-A905-F8F574CD96C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DCD7E3-F8E5-4B83-A905-F8F574CD96C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB892BCF-BFA4-4B64-A1D6-0FC73D056CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB892BCF-BFA4-4B64-A1D6-0FC73D056CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB892BCF-BFA4-4B64-A1D6-0FC73D056CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB892BCF-BFA4-4B64-A1D6-0FC73D056CF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107D088F-C9FC-430D-A9DB-E1661485C355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107D088F-C9FC-430D-A9DB-E1661485C355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107D088F-C9FC-430D-A9DB-E1661485C355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107D088F-C9FC-430D-A9DB-E1661485C355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CAB2599-CCC5-4BAD-B945-2207FE0A346A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CAB2599-CCC5-4BAD-B945-2207FE0A346A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CAB2599-CCC5-4BAD-B945-2207FE0A346A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CAB2599-CCC5-4BAD-B945-2207FE0A346A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C519A6B6-F0E4-4AA3-BB49-C5B799218B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C519A6B6-F0E4-4AA3-BB49-C5B799218B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C519A6B6-F0E4-4AA3-BB49-C5B799218B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C519A6B6-F0E4-4AA3-BB49-C5B799218B35}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

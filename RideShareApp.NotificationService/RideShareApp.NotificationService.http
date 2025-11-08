@@ -1,0 +1,6 @@
+@RideShareApp.NotificationService_HostAddress = http://localhost:5039
+
+GET {{RideShareApp.NotificationService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
