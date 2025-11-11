@@ -1,8 +1,12 @@
 using System.Text;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using RideShareApp.Api.Authentication;
+using RideShareApp.Api.Services.Twilio;
+using RideShareApp.Data.DbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +15,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<AuthenticationService>();
+// Add DbContext
+builder.Services.AddDbContext<RideShareDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add Redis distributed cache
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["Redis:ConnectionString"];
+    options.InstanceName = "RideShareApp:";
+});
+
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ITwilioService, TwilioService>();
 
 // Configure MassTransit with RabbitMQ
 builder.Services.AddMassTransit(x =>

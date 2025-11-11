@@ -5,11 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace RideShareApp.Api.Authentication;
 
-public class AuthenticationService
+public class TokenService(IConfiguration config)
 {
-    private readonly IConfiguration _config;
-    public AuthenticationService(IConfiguration config) => _config = config;
-
     public string GenerateToken(string userId)
     {
         var claims = new[]
@@ -18,12 +15,12 @@ public class AuthenticationService
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: _config["Jwt:Issuer"],
-            audience: _config["Jwt:Audience"],
+            issuer: config["Jwt:Issuer"],
+            audience: config["Jwt:Audience"],
             claims: claims,
             expires: DateTime.UtcNow.AddMinutes(60),
             signingCredentials: creds

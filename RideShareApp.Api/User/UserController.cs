@@ -7,24 +7,9 @@ namespace RideShareApp.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController : ControllerBase
+public class UserController(IPublishEndpoint publishEndpoint, ILogger<UserController> logger)
+    : ControllerBase
 {
-    private readonly IPublishEndpoint _publishEndpoint;
-    private readonly ILogger<UserController> _logger;
-
-    public UserController(IPublishEndpoint publishEndpoint, ILogger<UserController> logger)
-    {
-        _publishEndpoint = publishEndpoint;
-        _logger = logger;
-    }
-    
-    [HttpGet("test")]
-    [Authorize]
-    public Task<IActionResult> TestEndpoint()
-    {
-        return Task.FromResult<IActionResult>(Ok(new { Message = "Test Successful" }));
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
     {
@@ -37,9 +22,9 @@ public class UserController : ControllerBase
             DateTime.UtcNow
         );
 
-        await _publishEndpoint.Publish(@event);
+        await publishEndpoint.Publish(@event);
 
-        _logger.LogInformation("Published UserCreatedEvent for UserId: {UserId}", userId);
+        logger.LogInformation("Published UserCreatedEvent for UserId: {UserId}", userId);
 
         return Ok(new { UserId = userId, Message = "User created successfully" });
     }
@@ -55,9 +40,9 @@ public class UserController : ControllerBase
             DateTime.UtcNow
         );
 
-        await _publishEndpoint.Publish(@event);
+        await publishEndpoint.Publish(@event);
 
-        _logger.LogInformation("Published UserUpdatedEvent for UserId: {UserId}", userId);
+        logger.LogInformation("Published UserUpdatedEvent for UserId: {UserId}", userId);
 
         return Ok(new { Message = "User updated successfully" });
     }

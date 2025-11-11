@@ -6,17 +6,9 @@ namespace RideShareApp.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class RiderController : ControllerBase
+public class RiderController(IPublishEndpoint publishEndpoint, ILogger<RiderController> logger)
+    : ControllerBase
 {
-    private readonly IPublishEndpoint _publishEndpoint;
-    private readonly ILogger<RiderController> _logger;
-
-    public RiderController(IPublishEndpoint publishEndpoint, ILogger<RiderController> logger)
-    {
-        _publishEndpoint = publishEndpoint;
-        _logger = logger;
-    }
-
     [HttpPost("request-ride")]
     public async Task<IActionResult> RequestRide([FromBody] RequestRideRequest request)
     {
@@ -29,9 +21,9 @@ public class RiderController : ControllerBase
             DateTime.UtcNow
         );
 
-        await _publishEndpoint.Publish(@event);
+        await publishEndpoint.Publish(@event);
 
-        _logger.LogInformation("Published RideRequestedEvent for RideId: {RideId}, RiderId: {RiderId}", rideId, request.RiderId);
+        logger.LogInformation("Published RideRequestedEvent for RideId: {RideId}, RiderId: {RiderId}", rideId, request.RiderId);
 
         return Ok(new { RideId = rideId, Message = "Ride requested successfully" });
     }
@@ -46,9 +38,9 @@ public class RiderController : ControllerBase
             DateTime.UtcNow
         );
 
-        await _publishEndpoint.Publish(@event);
+        await publishEndpoint.Publish(@event);
 
-        _logger.LogInformation("Published RideCancelledEvent for RideId: {RideId}", rideId);
+        logger.LogInformation("Published RideCancelledEvent for RideId: {RideId}", rideId);
 
         return Ok(new { Message = "Ride cancelled successfully" });
     }
@@ -64,9 +56,9 @@ public class RiderController : ControllerBase
             DateTime.UtcNow
         );
 
-        await _publishEndpoint.Publish(@event);
+        await publishEndpoint.Publish(@event);
 
-        _logger.LogInformation("Published RideCompletedEvent for RideId: {RideId}", rideId);
+        logger.LogInformation("Published RideCompletedEvent for RideId: {RideId}", rideId);
 
         return Ok(new { Message = "Ride completed successfully" });
     }

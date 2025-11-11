@@ -6,17 +6,9 @@ namespace RideShareApp.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DriverController : ControllerBase
+public class DriverController(IPublishEndpoint publishEndpoint, ILogger<DriverController> logger)
+    : ControllerBase
 {
-    private readonly IPublishEndpoint _publishEndpoint;
-    private readonly ILogger<DriverController> _logger;
-
-    public DriverController(IPublishEndpoint publishEndpoint, ILogger<DriverController> logger)
-    {
-        _publishEndpoint = publishEndpoint;
-        _logger = logger;
-    }
-
     [HttpPost("{rideId}/accept")]
     public async Task<IActionResult> AcceptRide(Guid rideId, [FromBody] AcceptRideRequest request)
     {
@@ -27,9 +19,9 @@ public class DriverController : ControllerBase
             DateTime.UtcNow
         );
 
-        await _publishEndpoint.Publish(@event);
+        await publishEndpoint.Publish(@event);
 
-        _logger.LogInformation("Published RideAcceptedEvent for RideId: {RideId}, DriverId: {DriverId}", rideId, request.DriverId);
+        logger.LogInformation("Published RideAcceptedEvent for RideId: {RideId}, DriverId: {DriverId}", rideId, request.DriverId);
 
         return Ok(new { Message = "Ride accepted successfully" });
     }

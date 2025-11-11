@@ -23,3 +23,32 @@ Accept: application/json
 
 GET {{RideShareApp_Api_HostAddress}}/api/user/test
 Authorization: Bearer {{token}}
+
+###
+
+# Request login code via phone number
+POST {{RideShareApp_Api_HostAddress}}/api/login/PhoneNumber
+Content-Type: application/json
+
+{
+  "Number": "+15551234567"
+}
+
+###
+
+# Request login code via email
+POST {{RideShareApp_Api_HostAddress}}/api/login/Email
+Content-Type: application/json
+
+"user@example.com"
+
+###
+
+# Verify code (JSON body)
+POST {{RideShareApp_Api_HostAddress}}/api/login/VerifyCode
+Content-Type: application/json
+
+{
+  "code": "9RUN3S",
+  "contactInfo": "+15551234560"
+}
