@@ -20,8 +20,4 @@
     <ProjectReference Include="..\RideShareApp.Data\RideShareApp.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
